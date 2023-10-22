@@ -9,32 +9,38 @@ int main() {
       return 1;
     }
   }
-  int output = 1;
 
-  for (int i = 0; i <= sizeof(input)/sizeof(input[0]) - 1; i += 2) {
-    if (input[i+1] <= input[i]) {
+  if (input[1] <= input[0] || input[3] <= input[2] || input[5] <= input[4]) {
       return 1;
-    }
-    switch (i) {
-      case 0:
-        if ((input[i] > input[2] && input[i] < input[3]) || (input[i] > input[4] && input[i] < input[5])) {
-          output++;
-        }
-        if ((input[i+1] > input[2] && input[i+1] < input[3]) || (input[i+1] > input[4] && input[i] < input[5])) {
-          output++;
-        }
-      break;
-      case 2:
-        if (input[i] > input[4] && input[i] < input[5]) {
-          output++;
-        }
-        if (input[i+1] > input[4] && input[i+1] < input[5]) {
-          output++;
-        }
-      break;
-      default:
-      break;
-    }
+  }
+
+  int output = 1;
+  int ab = 0;
+  int ac = 0;
+  int bc = 0;
+
+  if ((input[0] > input[2] && input[0] < input[3]) || (input[1] > input[2] && input[1] < input[3])) {
+    ab++;
+    output++;
+  } else if ((input[0] > input[4] && input[0] < input[5]) || (input[1] > input[4] && input[1] < input[5])) {
+    ac++;
+    output++;
+  }
+
+  if ((input[2] > input[0] && input[2] < input[1] && ab == 0) || (input[3] > input[0] && input[3] < input[1] && ab == 0)) {
+    ab++;
+    output++;
+  } else if ((input[2] > input[4] && input[2] < input[5]) || (input[3] > input[4] && input[3] < input[5])) {
+    bc++;
+    output++;
+  }
+
+  if ((input[4] > input[2] && input[4] < input[3] && bc == 0 && output != 3) || (input[5] > input[2] && input[5] < input[3] && bc == 0 && output != 3)) {
+    bc++;
+    output++;
+  } else if ((input[4] > input[0] && input[4] < input[1] && ac == 0 && output != 3) || (input[5] > input[0] && input[5] < input[1] && ac == 0 && output != 3)) {
+    ac++;
+    output++;
   }
   
   printf("%d", output);
