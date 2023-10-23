@@ -29,11 +29,7 @@ int main() {
       output = 2;
     }
   } else if (inBetween(input[2], input[4], input[5]) || inBetween(input[3], input[4], input[5]) || inBetween(input[4], input[2], input[3]) || inBetween(input[5], input[2], input[3])) { //bc
-    if (inBetween(input[0], input[4], input[5]) || inBetween(input[1], input[4], input[5]) || inBetween(input[4], input[0], input[1]) || inBetween(input[5], input[0], input[1])) { //ac
-     output = 3;
-    } else {
-      output = 2;
-    }
+    output = 2;
   } else {
     output = 1;
   }
